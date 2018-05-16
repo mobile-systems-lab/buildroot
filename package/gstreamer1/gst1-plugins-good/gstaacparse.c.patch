@@ -1,0 +1,10 @@
+--- gst1-plugins-good-1.4.5/gst/audioparsers/gstaacparse.c.orig	2015-09-02 17:23:09.570019306 -0500
++++ gst1-plugins-good-1.4.5/gst/audioparsers/gstaacparse.c	2015-09-02 11:48:51.009527338 -0500
+@@ -143,6 +143,7 @@
+ gst_aac_parse_init (GstAacParse * aacparse)
+ {
+   GST_DEBUG ("initialized");
++  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (aacparse), FALSE);
+   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (aacparse));
+ }
+ 

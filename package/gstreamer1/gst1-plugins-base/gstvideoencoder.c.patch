@@ -1,0 +1,11 @@
+--- gst-plugins-base-1.4.5/gst-libs/gst/video/gstvideoencoder.c.orig	2015-09-02 17:21:05.270016257 -0500
++++ gst-plugins-base-1.4.5/gst-libs/gst/video/gstvideoencoder.c	2015-09-02 15:53:36.673887527 -0500
+@@ -2053,6 +2053,8 @@
+         discont = FALSE;
+       }
+ 
++      GST_BUFFER_PTS (tmpbuf) = frame->pts;
++      GST_BUFFER_DTS (tmpbuf) = frame->dts;
+       gst_pad_push (encoder->srcpad, gst_buffer_ref (tmpbuf));
+     }
+     priv->new_headers = FALSE;

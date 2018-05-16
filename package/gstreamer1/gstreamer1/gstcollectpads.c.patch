@@ -1,0 +1,12 @@
+--- gstreamer1-1.4.5/libs/gst/base/gstcollectpads.c.orig	2015-09-09 20:48:47.062398747 -0500
++++ gstreamer1-1.4.5/libs/gst/base/gstcollectpads.c	2015-09-09 20:49:18.193958253 -0500
+@@ -505,6 +505,9 @@
+ 
+   *outbuf = buf;
+   time = GST_BUFFER_PTS (buf);
++  if (G_UNLIKELY (!GST_CLOCK_TIME_IS_VALID (time))) {
++    time = GST_BUFFER_DTS (buf);
++  }
+ 
+   /* invalid left alone and passed */
+   if (G_LIKELY (GST_CLOCK_TIME_IS_VALID (time))) {
